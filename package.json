@@ -1,0 +1,60 @@
+{
+  "version": "1.0.3",
+  "name": "rn-media-controller",
+  "author": "EagleLion systems <contact@eaglelionsystems.com>",
+  "license": "MIT",
+  "keywords": [
+    "react-native",
+    "ios",
+    "android",
+    "video",
+    "audio",
+    "media",
+    "control"
+  ],
+  "main": "dist/index.js",
+  "module": "dist/react-native-media-controls.esm.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "dev": "tsdx watch --localDev",
+    "build": "tsdx build",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {
+    "react": ">=16",
+    "react-native": ">=0.60"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "devDependencies": {
+    "@react-native-community/slider": "^4.1.12",
+    "@types/react": "^16.9.34",
+    "@types/react-native": "^0.62.5",
+    "husky": "^4.2.5",
+    "rollup-plugin-copy-assets": "^2.0.3",
+    "tsdx": "^0.13.2",
+    "tslib": "^1.11.1",
+    "typescript": "^3.8.3"
+  },
+  "description": "A sweet UI component to manipulate your media. Strongly typed using Typescript.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ayuleul/react-native-media-controls.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ayuleul/react-native-media-controls/issues"
+  },
+  "homepage": "https://github.com/ayuleul/react-native-media-controls#readme"
+}
