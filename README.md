@@ -6,7 +6,7 @@ This package is based on react native media player using @react-native-community
 
 ```bash
    // install package
-   yarn add react-native-media-controls
+   yarn add react-native-media-controller
    // install yarn add @react-native-community/slider, as this is a dependency of this library
    yarn add @react-native-community/slider
 ```
