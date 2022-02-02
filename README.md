@@ -1,8 +1,6 @@
-# rn-media-controls
+# react-native-media-controller
 
 This package is based on react native media player using @react-native-community/slider for react native video.
-
-<!-- ![mediac](https://user-images.githubusercontent.com/10927770/80893585-89967000-8c88-11ea-83af-2a028115ee12.gif) -->
 
 ## Installation
 
