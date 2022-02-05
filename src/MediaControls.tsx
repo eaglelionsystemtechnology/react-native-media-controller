@@ -30,11 +30,12 @@ export type Props = {
   showOnStart?: boolean;
   sliderStyle?: CustomSliderStyle;
   toolbarStyle?: ViewStyle;
-
   maximumTrackTintColor?: string;
   minimumTrackTintColor?: string;
   thumbTintColor?: string;
   disableTrack?: boolean;
+  onForward?: () => void;
+  onBackWard?: () => void;
 };
 
 const MediaControls = (props: Props) => {
@@ -58,9 +59,12 @@ const MediaControls = (props: Props) => {
     minimumTrackTintColor,
     thumbTintColor,
     disableTrack,
+    onForward,
+    onBackWard,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
-    if (showOnStart) {
+    if (showOnStart)
+    {
       return {
         initialOpacity: 1,
         initialIsVisible: true,
@@ -87,9 +91,8 @@ const MediaControls = (props: Props) => {
       delay,
       useNativeDriver: false,
     }).start((result: { finished: any }) => {
-      /* I noticed that the callback is called twice, when it is invoked and when it completely finished
-      This prevents some flickering */
-      if (result.finished) {
+      if (result.finished)
+      {
         setIsVisible(false);
       }
     });
@@ -103,7 +106,8 @@ const MediaControls = (props: Props) => {
       delay: 0,
       useNativeDriver: false,
     }).start(() => {
-      if (loop) {
+      if (loop)
+      {
         fadeOutControls(fadeOutDelay);
       }
     });
@@ -119,7 +123,8 @@ const MediaControls = (props: Props) => {
   const onPause = () => {
     const { playerState, onPaused } = props;
     const { PLAYING, PAUSED, ENDED } = PLAYER_STATES;
-    switch (playerState) {
+    switch (playerState)
+    {
       case PLAYING: {
         cancelAnimation();
         break;
@@ -137,8 +142,6 @@ const MediaControls = (props: Props) => {
   };
 
   const toggleControls = () => {
-    // value is the last value of the animation when stop animation was called.
-    // As this is an opacity effect, I (Charlie) used the value (0 or 1) as a boolean
     opacity.stopAnimation((value: number) => {
       setIsVisible(!!value);
       return value ? fadeOutControls() : fadeInControls();
@@ -167,6 +170,9 @@ const MediaControls = (props: Props) => {
               isLoading={isLoading}
               mainColor={mainColor}
               playerState={playerState}
+              onForward={onForward}
+              onBackward={onBackWard}
+              disableTrack={disableTrack}
             />
             <Slider
               progress={progress}

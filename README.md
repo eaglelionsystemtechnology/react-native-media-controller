@@ -70,6 +70,9 @@ const App = () => {
 | onPaused     | function | No       |                        | Triggered when the play/pause button is pressed. It returns the new toggled value (PLAYING or PAUSED)  |
 | onReplay     | function | Yes      |                        | Triggered when the replay button is pressed                                                            |
 | onSeek       | function | No       |                        | Triggered when the user released the slider                                                            |
+| onBackward   | function | Yes      |                        | To Move Video Backward                                                                                 |
+| onForward    | function | Yes      |                        | T0 Move video forward                                                                                  |  |
+| disableTruck | boolean  | Yes      |                        | To disable the video controller on slider, move forward and backward                                   |  |
 | onSeeking    | function | Yes      |                        | Triggered when the user is interacting with the slider                                                 |
 | showOnStart  | boolean  | Yes      | true                   | controls the visibility of the controls during the initial render                                      |
 
