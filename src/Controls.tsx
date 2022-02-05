@@ -31,7 +31,7 @@ const Controls = (props: ControlsProps) => {
   const goForward = require("./assets/forward.png");
   const pressAction = playerState === PLAYER_STATES.ENDED ? onReplay : onPause;
 
-  const content = !isLoading ? (
+  const content = isLoading ? (
     <ActivityIndicator size="large" color="#FFF" />
   ) : (
     <View style={{ flexDirection: "row" }}>

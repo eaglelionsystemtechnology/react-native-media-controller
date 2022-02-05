@@ -63,7 +63,8 @@ const MediaControls = (props: Props) => {
     onBackWard,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
-    if (showOnStart) {
+    if (showOnStart)
+    {
       return {
         initialOpacity: 1,
         initialIsVisible: true,
@@ -90,7 +91,8 @@ const MediaControls = (props: Props) => {
       delay,
       useNativeDriver: false,
     }).start((result: { finished: any }) => {
-      if (result.finished) {
+      if (result.finished)
+      {
         setIsVisible(false);
       }
     });
@@ -104,7 +106,8 @@ const MediaControls = (props: Props) => {
       delay: 0,
       useNativeDriver: false,
     }).start(() => {
-      if (loop) {
+      if (loop)
+      {
         fadeOutControls(fadeOutDelay);
       }
     });
@@ -120,7 +123,8 @@ const MediaControls = (props: Props) => {
   const onPause = () => {
     const { playerState, onPaused } = props;
     const { PLAYING, PAUSED, ENDED } = PLAYER_STATES;
-    switch (playerState) {
+    switch (playerState)
+    {
       case PLAYING: {
         cancelAnimation();
         break;
@@ -168,6 +172,7 @@ const MediaControls = (props: Props) => {
               playerState={playerState}
               onForward={onForward}
               onBackward={onBackWard}
+              disableTrack={disableTrack}
             />
             <Slider
               progress={progress}
