@@ -36,7 +36,7 @@ const Controls = (props: ControlsProps) => {
   ) : (
     <View style={{ flexDirection: "row" }}>
       {
-        disableTrack ? (
+        !disableTrack ? (
           <TouchableOpacity
             style={[styles.playButton, { backgroundColor: mainColor }]}
             onPress={onForward}
@@ -64,7 +64,7 @@ const Controls = (props: ControlsProps) => {
         <Image source={icon} style={styles.playIcon} />
       </TouchableOpacity>
       {
-        disableTrack ? (
+        !disableTrack ? (
           <TouchableOpacity
             style={[styles.playButton, { backgroundColor: mainColor }]}
             onPress={onBackward}
