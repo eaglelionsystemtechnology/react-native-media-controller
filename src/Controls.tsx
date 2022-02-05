@@ -12,6 +12,7 @@ type ControlsProps = Pick<
   onPause: () => void;
   onForward?: () => void;
   onBackward?: () => void;
+  disableTrack?: boolean;
 };
 
 const Controls = (props: ControlsProps) => {
@@ -23,6 +24,7 @@ const Controls = (props: ControlsProps) => {
     onPause,
     onForward,
     onBackward,
+    disableTrack,
   } = props;
   const icon = getPlayerStateIcon(playerState);
   const goBack = require("./assets/back.png");
@@ -33,16 +35,21 @@ const Controls = (props: ControlsProps) => {
     <ActivityIndicator size="large" color="#FFF" />
   ) : (
     <View style={{ flexDirection: "row" }}>
-      <TouchableOpacity
-        style={[styles.playButton, { backgroundColor: mainColor }]}
-        onPress={onForward}
-        accessibilityLabel={
-          PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
-        }
-        accessibilityHint={"Plays and Pauses the Video"}
-      >
-        <Image source={goBack} style={styles.playIcon} />
-      </TouchableOpacity>
+      {
+        disableTrack ? (
+          <TouchableOpacity
+            style={[styles.playButton, { backgroundColor: mainColor }]}
+            onPress={onForward}
+            accessibilityLabel={
+              PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
+            }
+            accessibilityHint={"Plays and Pauses the Video"}
+          >
+            <Image source={goBack} style={styles.playIcon} />
+          </TouchableOpacity>
+        ) : null
+      }
+
       <TouchableOpacity
         style={[
           styles.playButton,
@@ -56,16 +63,20 @@ const Controls = (props: ControlsProps) => {
       >
         <Image source={icon} style={styles.playIcon} />
       </TouchableOpacity>
-      <TouchableOpacity
-        style={[styles.playButton, { backgroundColor: mainColor }]}
-        onPress={onBackward}
-        accessibilityLabel={
-          PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
-        }
-        accessibilityHint={"Plays and Pauses the Video"}
-      >
-        <Image source={goForward} style={styles.playIcon} />
-      </TouchableOpacity>
+      {
+        disableTrack ? (
+          <TouchableOpacity
+            style={[styles.playButton, { backgroundColor: mainColor }]}
+            onPress={onBackward}
+            accessibilityLabel={
+              PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
+            }
+            accessibilityHint={"Plays and Pauses the Video"}
+          >
+            <Image source={goForward} style={styles.playIcon} />
+          </TouchableOpacity>
+        ) : null
+      }
     </View>
   );
 
