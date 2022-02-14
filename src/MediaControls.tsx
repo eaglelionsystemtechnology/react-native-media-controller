@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactChild } from "react";
 import {
   View,
   Animated,
@@ -38,6 +38,7 @@ export type Props = {
   onBackWard?: () => void;
   onNextTrack?: () => void;
   isLastTrack?: boolean;
+  LastTruckMessage?: ReactChild;
 };
 
 const MediaControls = (props: Props) => {
@@ -65,6 +66,7 @@ const MediaControls = (props: Props) => {
     onBackWard,
     onNextTrack,
     isLastTrack = false,
+    LastTruckMessage,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -175,6 +177,7 @@ const MediaControls = (props: Props) => {
               disableTrack={disableTrack}
               onNextTrack={onNextTrack}
               isLastTrack={isLastTrack}
+              LastTruckMessage={LastTruckMessage}
             />
             <Slider
               progress={progress}

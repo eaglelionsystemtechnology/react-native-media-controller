@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   TouchableOpacity,
   View,
@@ -21,6 +21,7 @@ type ControlsProps = Pick<
   disableTrack?: boolean;
   onNextTrack?: () => void;
   isLastTrack?: boolean;
+  LastTruckMessage?: ReactNode;
 };
 
 const Controls = (props: ControlsProps) => {
@@ -35,6 +36,7 @@ const Controls = (props: ControlsProps) => {
     onBackward,
     disableTrack,
     isLastTrack,
+    LastTruckMessage,
   } = props;
   const icon = getPlayerStateIcon(playerState);
   const goBack = require("./assets/back.png");
@@ -98,6 +100,8 @@ const Controls = (props: ControlsProps) => {
         ) : null}
       </View>
     )
+  ) : LastTruckMessage ? (
+    LastTruckMessage
   ) : (
     <View style={{ padding: 8, backgroundColor: mainColor }}>
       <Text style={{ color: "white" }}>Thank you for being with us</Text>
