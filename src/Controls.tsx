@@ -20,6 +20,7 @@ type ControlsProps = Pick<
   onBackward?: () => void;
   disableTrack?: boolean;
   onNextTrack?: () => void;
+  isLastTrack?: boolean;
 };
 
 const Controls = (props: ControlsProps) => {
@@ -33,6 +34,7 @@ const Controls = (props: ControlsProps) => {
     onForward,
     onBackward,
     disableTrack,
+    isLastTrack,
   } = props;
   const icon = getPlayerStateIcon(playerState);
   const goBack = require("./assets/back.png");
@@ -41,61 +43,66 @@ const Controls = (props: ControlsProps) => {
 
   const content = isLoading ? (
     <ActivityIndicator size="large" color="#FFF" />
-  ) : playerState === PLAYER_STATES.ENDED && onNextTrack ? (
-    <TouchableOpacity
-      style={[
-        styles.playButton,
-        { backgroundColor: mainColor, marginHorizontal: 8 },
-      ]}
-      onPress={onNextTrack}
-      accessibilityLabel="Move to next track"
-      accessibilityHint={"Move to next track"}
-    >
-      <Text style={{ color: "white" }}>NEXT</Text>
-    </TouchableOpacity>
-  ) : (
-    <View style={{ flexDirection: "row" }}>
-      {!disableTrack ? (
-        <TouchableOpacity
-          style={[styles.playButton, { backgroundColor: mainColor }]}
-          onPress={onBackward}
-          accessibilityLabel={
-            PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
-          }
-          accessibilityHint={"Plays and Pauses the Video"}
-        >
-          <Image source={goBack} style={styles.playIcon} />
-        </TouchableOpacity>
-      ) : null}
-
+  ) : !isLastTrack ? (
+    playerState === PLAYER_STATES.ENDED && onNextTrack ? (
       <TouchableOpacity
         style={[
           styles.playButton,
           { backgroundColor: mainColor, marginHorizontal: 8 },
         ]}
-        onPress={pressAction}
-        accessibilityLabel={
-          PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
-        }
-        accessibilityHint={"Plays and Pauses the Video"}
+        onPress={onNextTrack}
+        accessibilityLabel="Move to next track"
+        accessibilityHint={"Move to next track"}
       >
-        <Image source={icon} style={styles.playIcon} />
+        <Text style={{ color: "white" }}>NEXT</Text>
       </TouchableOpacity>
-      {!disableTrack ? (
+    ) : (
+      <View style={{ flexDirection: "row" }}>
+        {!disableTrack ? (
+          <TouchableOpacity
+            style={[styles.playButton, { backgroundColor: mainColor }]}
+            onPress={onBackward}
+            accessibilityLabel={
+              PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
+            }
+            accessibilityHint={"Plays and Pauses the Video"}
+          >
+            <Image source={goBack} style={styles.playIcon} />
+          </TouchableOpacity>
+        ) : null}
+
         <TouchableOpacity
-          style={[styles.playButton, { backgroundColor: mainColor }]}
-          onPress={onForward}
+          style={[
+            styles.playButton,
+            { backgroundColor: mainColor, marginHorizontal: 8 },
+          ]}
+          onPress={pressAction}
           accessibilityLabel={
             PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
           }
           accessibilityHint={"Plays and Pauses the Video"}
         >
-          <Image source={goForward} style={styles.playIcon} />
+          <Image source={icon} style={styles.playIcon} />
         </TouchableOpacity>
-      ) : null}
+        {!disableTrack ? (
+          <TouchableOpacity
+            style={[styles.playButton, { backgroundColor: mainColor }]}
+            onPress={onForward}
+            accessibilityLabel={
+              PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
+            }
+            accessibilityHint={"Plays and Pauses the Video"}
+          >
+            <Image source={goForward} style={styles.playIcon} />
+          </TouchableOpacity>
+        ) : null}
+      </View>
+    )
+  ) : (
+    <View style={{ padding: 8, backgroundColor: mainColor }}>
+      <Text style={{ color: "white" }}>Thank you for being with us</Text>
     </View>
   );
-
   return <View style={[styles.controlsRow]}>{content}</View>;
 };
 
