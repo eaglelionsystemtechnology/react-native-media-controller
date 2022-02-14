@@ -8,9 +8,9 @@ import {
   ViewStyle,
 } from "react-native";
 import styles from "./MediaControls.style";
-import { getPlayerStateIcon } from "./utils";
+import { getPlayerStateIcon } from "../utils";
 import { Props } from "./MediaControls";
-import { PLAYER_STATES } from "./constants/playerStates";
+import { PLAYER_STATES } from "../constants/playerStates";
 
 type ControlsProps = Pick<
   Props,

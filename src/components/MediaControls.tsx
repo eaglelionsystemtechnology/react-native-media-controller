@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import styles from "./MediaControls.style";
-import { PLAYER_STATES } from "./constants/playerStates";
+import { PLAYER_STATES } from "../constants/playerStates";
 import { Controls } from "./Controls";
 import { Slider, CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";

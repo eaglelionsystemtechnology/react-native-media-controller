@@ -2,9 +2,9 @@ import React from "react";
 import { TouchableOpacity, View, Text, Image, ViewStyle } from "react-native";
 import CSlider from "@react-native-community/slider";
 import styles from "./MediaControls.style";
-import { humanizeVideoDuration } from "./utils";
+import { humanizeVideoDuration } from "../utils";
 import { Props as MediaControlsProps } from "./MediaControls";
-import { PLAYER_STATES } from "./constants/playerStates";
+import { PLAYER_STATES } from "../constants/playerStates";
 
 export type CustomSliderStyle = {
   containerStyle: ViewStyle;
@@ -92,20 +92,6 @@ const Slider = (props: Props) => {
           }
           disabled={disableTrack}
         />
-        {/* <RNSlider
-          style={[styles.progressSlider]}
-          onValueChange={dragging}
-          onSlidingComplete={seekVideo}
-          maximumValue={Math.floor(duration)}
-          value={Math.floor(progress)}
-          trackStyle={[styles.track, customTrackStyle]}
-          thumbStyle={[
-            styles.thumb,
-            customThumbStyle,
-            { borderColor: mainColor },
-          ]}
-          minimumTrackTintColor={mainColor}
-        /> */}
       </View>
       {Boolean(onFullScreen) && (
         <TouchableOpacity
