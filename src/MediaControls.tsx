@@ -39,6 +39,9 @@ export type Props = {
   onNextTrack?: () => void;
   isLastTrack?: boolean;
   LastTruckMessage?: ReactChild;
+  playPauseStyle?: ViewStyle;
+  forwardBackwardStyle?: ViewStyle;
+  nextButtonStyle?: ViewStyle;
 };
 
 const MediaControls = (props: Props) => {
@@ -67,6 +70,9 @@ const MediaControls = (props: Props) => {
     onNextTrack,
     isLastTrack = false,
     LastTruckMessage,
+    playPauseStyle,
+    forwardBackwardStyle,
+    nextButtonStyle,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
     if (showOnStart) {
@@ -178,6 +184,9 @@ const MediaControls = (props: Props) => {
               onNextTrack={onNextTrack}
               isLastTrack={isLastTrack}
               LastTruckMessage={LastTruckMessage}
+              playPauseStyle={playPauseStyle}
+              forwardBackwardStyle={forwardBackwardStyle}
+              nextButtonStyle={nextButtonStyle}
             />
             <Slider
               progress={progress}

@@ -5,6 +5,7 @@ import {
   ActivityIndicator,
   Image,
   Text,
+  ViewStyle,
 } from "react-native";
 import styles from "./MediaControls.style";
 import { getPlayerStateIcon } from "./utils";
@@ -22,6 +23,9 @@ type ControlsProps = Pick<
   onNextTrack?: () => void;
   isLastTrack?: boolean;
   LastTruckMessage?: ReactNode;
+  playPauseStyle?: ViewStyle;
+  forwardBackwardStyle?: ViewStyle;
+  nextButtonStyle?: ViewStyle;
 };
 
 const Controls = (props: ControlsProps) => {
@@ -37,6 +41,9 @@ const Controls = (props: ControlsProps) => {
     disableTrack,
     isLastTrack,
     LastTruckMessage,
+    playPauseStyle,
+    forwardBackwardStyle,
+    nextButtonStyle,
   } = props;
   const icon = getPlayerStateIcon(playerState);
   const goBack = require("./assets/back.png");
@@ -51,6 +58,7 @@ const Controls = (props: ControlsProps) => {
         style={[
           styles.playButton,
           { backgroundColor: mainColor, marginHorizontal: 8 },
+          nextButtonStyle,
         ]}
         onPress={onNextTrack}
         accessibilityLabel="Move to next track"
@@ -62,7 +70,11 @@ const Controls = (props: ControlsProps) => {
       <View style={{ flexDirection: "row" }}>
         {!disableTrack ? (
           <TouchableOpacity
-            style={[styles.playButton, { backgroundColor: mainColor }]}
+            style={[
+              styles.playButton,
+              { backgroundColor: mainColor },
+              forwardBackwardStyle,
+            ]}
             onPress={onBackward}
             accessibilityLabel={
               PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
@@ -77,6 +89,7 @@ const Controls = (props: ControlsProps) => {
           style={[
             styles.playButton,
             { backgroundColor: mainColor, marginHorizontal: 8 },
+            playPauseStyle,
           ]}
           onPress={pressAction}
           accessibilityLabel={
@@ -88,7 +101,11 @@ const Controls = (props: ControlsProps) => {
         </TouchableOpacity>
         {!disableTrack ? (
           <TouchableOpacity
-            style={[styles.playButton, { backgroundColor: mainColor }]}
+            style={[
+              styles.playButton,
+              { backgroundColor: mainColor },
+              forwardBackwardStyle,
+            ]}
             onPress={onForward}
             accessibilityLabel={
               PLAYER_STATES.PAUSED ? "Tap to Play" : "Tap to Pause"
