@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, ReactChild } from "react";
 import {
   View,
   Animated,
@@ -7,7 +7,7 @@ import {
   ViewStyle,
 } from "react-native";
 import styles from "./MediaControls.style";
-import { PLAYER_STATES } from "./constants/playerStates";
+import { PLAYER_STATES } from "../constants/playerStates";
 import { Controls } from "./Controls";
 import { Slider, CustomSliderStyle } from "./Slider";
 import { Toolbar } from "./Toolbar";
@@ -36,6 +36,12 @@ export type Props = {
   disableTrack?: boolean;
   onForward?: () => void;
   onBackWard?: () => void;
+  onNextTrack?: () => void;
+  isLastTrack?: boolean;
+  LastTruckMessage?: ReactChild;
+  playPauseStyle?: ViewStyle;
+  forwardBackwardStyle?: ViewStyle;
+  nextButtonStyle?: ViewStyle;
 };
 
 const MediaControls = (props: Props) => {
@@ -61,10 +67,15 @@ const MediaControls = (props: Props) => {
     disableTrack,
     onForward,
     onBackWard,
+    onNextTrack,
+    isLastTrack = false,
+    LastTruckMessage,
+    playPauseStyle,
+    forwardBackwardStyle,
+    nextButtonStyle,
   } = props;
   const { initialOpacity, initialIsVisible } = (() => {
-    if (showOnStart)
-    {
+    if (showOnStart) {
       return {
         initialOpacity: 1,
         initialIsVisible: true,
@@ -91,8 +102,7 @@ const MediaControls = (props: Props) => {
       delay,
       useNativeDriver: false,
     }).start((result: { finished: any }) => {
-      if (result.finished)
-      {
+      if (result.finished) {
         setIsVisible(false);
       }
     });
@@ -106,8 +116,7 @@ const MediaControls = (props: Props) => {
       delay: 0,
       useNativeDriver: false,
     }).start(() => {
-      if (loop)
-      {
+      if (loop) {
         fadeOutControls(fadeOutDelay);
       }
     });
@@ -123,8 +132,7 @@ const MediaControls = (props: Props) => {
   const onPause = () => {
     const { playerState, onPaused } = props;
     const { PLAYING, PAUSED, ENDED } = PLAYER_STATES;
-    switch (playerState)
-    {
+    switch (playerState) {
       case PLAYING: {
         cancelAnimation();
         break;
@@ -173,6 +181,12 @@ const MediaControls = (props: Props) => {
               onForward={onForward}
               onBackward={onBackWard}
               disableTrack={disableTrack}
+              onNextTrack={onNextTrack}
+              isLastTrack={isLastTrack}
+              LastTruckMessage={LastTruckMessage}
+              playPauseStyle={playPauseStyle}
+              forwardBackwardStyle={forwardBackwardStyle}
+              nextButtonStyle={nextButtonStyle}
             />
             <Slider
               progress={progress}
